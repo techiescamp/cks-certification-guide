@@ -1,4 +1,4 @@
-# Ultimate Certified Kubernetes Security Specialist (CKS) Preparation Guide - V1.31 (2025)
+# Ultimate Certified Kubernetes Security Specialist (CKS) Preparation Guide - V1.35 (2026)
 
 ## Hit the Star! :star:
 
@@ -7,21 +7,19 @@ If you are planning to use this repo for reference, please hit the star. Thanks!
 ## CKS Exam Overview
 
 The Certified Kubernetes Security Specialist (CKS) exam has a duration of 2 hours.
-To pass the exam, candidates need to achieve a score of at least 66%.
-The exam will be on Kubernetes version 1.31.
-Once the certificate is earned, the CKS certification remains valid for 2 years. The cost to take the exam is $395 USD.
+To pass the exam, candidates need to achieve a score of at least 67%.
+The exam will be on Kubernetes version 1.35.
+Once the certificate is earned, the CKS certification remains valid for 2 years. The cost to take the exam is $445 USD.
 
 ## CKS Exam Coupon (30% Off Exclusive Discount)
 
-> **CKA Price Update:** The CKS exam price will increase to $435 in January 2025. Take advantage of the current discount and complete the exam within 12 months to maximize your savings.
-
-To save on CKS exam registration, use the following coupon code.
+To save a flat 30% on CKS exam registration, use the following coupon code.
 
 **Coupon:** Use code **DCUBE30** at [kube.promo/cks](https://kube.promo/cks)
 
 ## Table of Contents
 
-1. [Cluster Setup (15%)](#)
+1. [Cluster Setup (15%)](#1-cluster-setup-15)
    - [Use Network security policies to restrict cluster level access](#)
    - [Use CIS benchmark to review the security configuration of Kubernetes components (etcd, kubelet, kubedns, kubeapi)](#)
    - [Properly set up Ingress with TLS](#)
@@ -68,7 +66,7 @@ CKS Certification Exam has the following key domains:
 Following are the subtopics under Cluster Setup
 
 ### Restrict Pod to Pod communication using Network Policy
-> [Network Policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)  : Understand the restriction of the Pod to Pod communication.
+> [Network Policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/) : Understand the restriction of Pod-to-Pod communication.
 
 ```yaml
 # Create a Deny all Network Policy
@@ -104,7 +102,7 @@ spec:
         - 169.254.169.254/32
 ```
 ### CIS Benchmark to analyze the cluster components
-> [CIS Benchmark]() : Analyze the cluster components using CIS Benchmark tool Kube Bench.
+> [CIS Benchmark](https://www.cisecurity.org/benchmark/kubernetes): Analyze the cluster components using CIS Benchmark tool Kube Bench.
 ```bash
 # CIS Benchmark Best Practices
 ./kube-bench --config-dir /root/cfg --config /root/cfg/config.yaml
@@ -135,7 +133,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
-	tls:
+  tls:
   - hosts:
       - dev.techiescamp.com
     secretName: tls-secret
@@ -164,17 +162,14 @@ spec:
 # Check the current version of the Kubernetes component
 kubectl --version
 
-# Check the current binary hash value
-sha512sum $(which kubectl)
+# Download Kubernetes v1.35 kubelet
+curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubelet
 
-# Download the cluster component
-wget https://dl.k8s.io/v1.31.0/kubernetes-server-linux-amd64.tar.gz
+# Download official checksum
+curl -LO https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubelet.sha256
 
-# Extract the package
-tar -xvf kubernetes-server-linux-amd64.tar.gz
-
-# Verify the Platform Binaries using Hash
-sha512sum kubernetes/server/bin/kubelet
+# Verify binary
+echo "$(cat kubelet.sha256)  kubelet" | sha256sum --check
 ```
 
 ## 2. Cluster Hardening (15%)
@@ -238,14 +233,14 @@ kubectl auth can-i delete deployments --as myuser
 # Add new credentials
 kubectl config set-credentials myuser --client-key=myuser.key --client-certificate=myuser.crt --embed-certs=true
 
-# Add context
-kubectl config set-context myuser --cluster=kubernetes --user=myuser
+# Add contexts
+kubectl config set-contexts myuser --cluster=kubernetes --user=myuser
 
 # List contexts
 kubectl config get-context
 
 # Change context
-kubectl config use-context myuser
+kubectl config use-contexts myuser
 ```
 
 ### Role Based Access Control
@@ -285,7 +280,7 @@ spec:
     - containerPort: 80
 ```
 ### Service Account Token Automount
-> [Service Account](#https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) : Disable the automounting of the Service Account Token. 
+> [Service Account](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/): Disable the automounting of the Service Account Token. 
 ```bash
 # Disable Service Account Token Automounting
 apiVersion: v1
@@ -317,7 +312,7 @@ metadata:
 k exec test-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 ### Upgrade Kubernetes clusters.
-> [Perform Cluster Version upgrade Using Kubeadm](https://techiescamp.com/courses/certified-kubernetes-administrator-course/lectures/55120133) : Managing the lifecycle involves upgrading clusters, managing control plane nodes, and ensuring consistency across versions.
+> [Perform Cluster Version upgrade Using Kubeadm](https://techiescamp.com/courses/certified-kubernetes-administrator-course/lectures/55120133): Managing the lifecycle involves upgrading clusters, managing control plane nodes, and ensuring consistency across versions.
 
 ## 3. System Hardening (10%)
 ### Disable Service
@@ -344,24 +339,24 @@ ss -tlpn | grep :80
 # List the Open files for the Port and the Process IDs
 lsof -i :80
 
-# Check the path of the packege
+# Check the path of the package
 ls -l /proc/12345/exe
 
 # Kill the process using the PID
 kill 12345
 
-# Remove the packege
+# Remove the package
 rm /usr/bin/app01
 ```
 
 ### Kernel Hardening using AppArmor
->[Restrict container access to resources](https://kubernetes.io/docs/tutorials/security/apparmor/) : Minimize the container access to reduce the access to the host resources.
+>[Restrict container access to resources](https://kubernetes.io/docs/tutorials/security/apparmor/): Minimize the container access to reduce access to host resources.
 ```bash
 # To list the default and custom loaded profiles
 aa-status
 
-# Profile modes - 'enforce' and `complain'
-# Example profile file which is restrict the write function to nodes
+# Profile modes - 'enforce' and 'complain'
+# Example profile file which restricts the write function to nodes
 
 
 #include <tunables/global>
@@ -395,13 +390,13 @@ spec:
     command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
 
 ```
-> Note: The profiles should be present in the worker nodes or where the workloads should be in.
+> Note: The profiles should be present on the worker nodes or where the workloads should be.
 
 ## 4. Minimize Microservice Vulnerabilities (20%)
 ### Run Container as Non-Root User 
-> [Security context to enable non-root containers](https://kubernetes.io/docs/concepts/security/pod-security-standards/) : Understand how to run a container with a non-root user.
+> [Security context to enable non-root containers](https://kubernetes.io/docs/concepts/security/pod-security-standards/): Understand how to run a container with a non-root user.
 ```bash
-# Adding security context to run the container as non root user
+# Adding security context to run the container as a non-root user
 apiVersion: v1
 kind: Pod
 metadata:
@@ -417,9 +412,9 @@ spec:
 ```
 
 ### Run a Container with Specific User ID and Group ID 
-> [Run a container with specifice user](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) : Learn to deploy a container with least privilege and high security.
+> [Run a container with a specific user](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/): Learn to deploy a container with least privilege and high security.
 ```bash
-# Run container with specific user id and group id
+# Run container with specific user ID and group ID
 apiVersion: v1
 kind: Pod
 metadata:
@@ -453,20 +448,15 @@ spec:
       privileged: false
 ```
 ### Pod Security Admission
-> [Enable Pod Secuurity Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) : Enforce the Pod Security Standards using Pod Security Admission.
+> [Enable Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/) : Enforce the Pod Security Standards using Pod Security Admission.
 ```bash
 # Add label to the namespace for the PSA
 k label namespace dev pod-security.kubernetes.io/enforce=restricted
-
-# Enable Pod Security Admission Plugin in the Kube Apiserver
-vim /etc/kubernetes/manifests/kube-apiserver
-
-- --enable-admission-plugins=podSecurity
 ```
-### ECTD encryption
+### ETCD encryption
 > [Encrypt the data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) : Secure the confidential data by encrypting.
 ```bash
-# Create a randon base64 encoded key
+# Create a random base64-encoded key
 echo -n "encryptedsecret" | base64
 
 # Create an Encryption configuration file with the encoded key
@@ -522,7 +512,7 @@ metadata:
   name: gvisor
 handler: runsc
 
-# Create a Pod with Runtime Class
+# Create a Pod with RuntimeClass
 apiVersion: v1
 kind: Pod
 metadata:
@@ -538,13 +528,14 @@ spec:
     - containerPort: 80
 
 # To check the container runtime
-k exec rtc-pod -- dmesg
+kubectl get pod rtc-pod -o jsonpath='{.spec.runtimeClassName}'
+kubectl get pod rtc-pod
 ```
 
 ### Cilium Network Policy 
-> [Endpoint Based Network Policy](https://docs.cilium.io/en/latest/security/policy/language/#endpoints-based) : Configure Cilium Network Policy to enable Pod to Pod encryption.
+> [Endpoint-Based Network Policy](https://docs.cilium.io/en/latest/security/policy/language/#endpoints-based): Configure CiliumNetworkPolicy to restrict outgoing traffic from frontend Pods to selected backend Pods.
 ```bash
-# Crete Cilium Network Policy to all outgoing traffic to a particular namespace and particular label
+# Create Cilium Network Policy for all outgoing traffic to a particular namespace and particular label
 apiVersion: "cilium.io/v2"
 kind: CiliumNetworkPolicy
 metadata:
@@ -562,17 +553,17 @@ spec:
 ## 5. Supply Chain Security (20%)
 
 ### Image Digest to run a Pod
-> [Run a Pod with Image Digest](https://kubernetes.io/docs/concepts/containers/images/) : Ensure the immutability and consistency of pulling the same image version using image digest.
+> [Run a Pod with Image Digest](https://kubernetes.io/docs/concepts/containers/images/): Ensure the immutability and consistency of pulling the same image version using an image digest.
 ```bash
 # Run a Pod using the image digest
 k run digest-pod --image nginx@sha256:5ddf6decf65ea64c0492cd38098a9db11cb0da682478d3e0cfa8cdfdeb112f30
 
 # To get the image digest of a Pod
-k describe pod dig-pod | grep -iE "Image ID"
+k describe pod digest-pod | grep -iE "Image ID"
 ```
 
 ### Image Policy Webhook Admission Controller Plugin
-> [Admission Control](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) : Enforce the custom image validation policies through external webhook to improve security and complaince.
+> [Admission Control](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/): Enforce the custom image validation policies through external webhook to improve security and complaince.
 ```bash
 # Create Admission Controller configuration file
 apiVersion: apiserver.config.k8s.io/v1
@@ -587,10 +578,10 @@ plugins:
         retryBackoff: 500
         defaultAllow: false
 
-# Find the kubeconf path
+# Find the kubeconfig path
 find / -name kubeconf
 
-# Update the Admission controller configuration and kubeconf path
+# Update the Admission controller configuration and kubeconfig path
 apiVersion: apiserver.config.k8s.io/v1
 kind: AdmissionConfiguration
 plugins:
@@ -639,14 +630,14 @@ vim /etc/kubernetes/manifests/kube-apiserver
 # Scan manifest using binary
 kubesec scan pod.yaml
 
-# Scan using Kubesec docker image
+# Scan using Kubesec Docker image
 docker run -i kubesec/kubesec:512c5e0 scan /dev/stdin > pod.yaml
 ```
 ### Generate Software Bills of Materials (SBOMs) using bom
-> [bom](https://github.com/kubernetes-sigs/bom) :
-Scan the container image using bom to generate SBOM.
+> [bom](https://github.com/kubernetes-sigs/bom):
+Scan the container image using bom to generate an SBOM.
 ```bash
-# Scan container image using Trivy
+# Generate SBOM using bom
 bom generate --image nginx:1.19.1-alpine-perl
 
 # Scan the image and create Software Bills of Material
@@ -654,7 +645,7 @@ bom generate --image nginx:1.19.1-alpine-perl --output report.spdx
 ```
 ## 6. Monitoring, Logging and Runtime Security (20%)
 ### Behavior analysis using Falco
-> [Monitor and alert suspicious behavior in kubernets](https://falco.org/docs/reference/rules/supported-fields/) : Monitor runtime security threats and create alerts to inform the suspicios behavior.
+> [Monitor and alert suspicious behavior in Kubernetes](https://falco.org/docs/reference/rules/supported-fields/): Monitor runtime security threats and create alerts to inform you of suspicious behavior.
 ```bash
 # Check the Falco status
 systemctl status falco
@@ -668,7 +659,7 @@ cp /etc/falco/falco_rules.yaml /etc/falco/falco_rules.local.yaml
 # Edit the rule and restart the service
 systemctl restart falco
 
-# Create a Pod and execuite the shell for testing
+# Create a Pod and execute the shell for testing
 k run test-pod --image nginx
 
 k exec test-pod -- sh
@@ -680,12 +671,12 @@ cat /var/log/syslog | grep falco
 ```
 
 ### Make Secret as environment variable inside the Pod
-> [Secret as Env](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/) : Access the secret as environment variable inside the container.
+> [Secret as Env](https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/) : Access the secret as an environment variable inside the container.
 ```bash
 # Create a secret
 k create secret generic secret-1 --from-literal password=admin@123
 
-# Create Secret as environment variable
+# Create Secret as an environment variable
 apiVersion: v1
 kind: Pod
 metadata:
@@ -706,9 +697,9 @@ k exec -it env-single-secret -- env
 ```
 
 ### Mount Secret as Volume 
-> [Mount secret as volume](https://kubernetes.io/docs/concepts/configuration/secret/) : Mount the Secret as volume to improve the security and dynamic updates.
+> [Mount secret as volume](https://kubernetes.io/docs/concepts/configuration/secret/): Mount the Secret as a volume to improve security and enable dynamic updates.
 ```bash
-# Mount secret as volume in the Pod
+# Mount secret as a volume in the Pod
 apiVersion: v1
 kind: Pod
 metadata:
@@ -727,13 +718,13 @@ spec:
           mountPath: "/etc/secret-volume"
 
 # To check the mounted secret
-k exec -it volume-secret-pod -- ls /etc/secret/volume
+k exec -it volume-secret-pod -- ls /etc/secret-volume
 ```
 
-### Make the container immutable using the read only root file system 
-> [Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) : Prevent the container root file system from the modification. 
+### Make the container immutable using the read-only root file system 
+> [Security Context](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/): Prevent the container root file system from being modified. 
 ```bash
-# Create a Pod with ReadOnlyRooFileSystem security context
+# Create a Pod with ReadOnlyRootFilesystem security context
 apiVersion: v1
 kind: Pod
 metadata:
@@ -747,10 +738,10 @@ spec:
     securityContext:
       readOnlyRootFilesystem: true
 ```
-> Note: If the container needs to write something then if we are using the Read only root file system, the Pod won't work properly so to resolve this we need to create and mount an empty dir.
+> Note: If the container needs to write something, then if we are using the read-only root filesystem, the Pod won't work properly, so to resolve this, we need to create and mount an empty dir.
 ```bash
 # Immutable deployment
-“apiVersion: v1
+apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
@@ -763,13 +754,17 @@ spec:
     volumeMounts:
     - name: nginx-run
       mountPath: /var/run
+    - name: nginx-cache
+      mountPath: /var/cache/nginx
   volumes:
   - name: nginx-run
+    emptyDir: {}
+  - name: nginx-cache
     emptyDir: {}
 ```
 
 ### Audit Policy
-> [Audit Policy](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/) : Learn how to Monitor and log the cluster activities
+> [Audit Policy](https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/): Learn how to monitor and log cluster activities
 ```bash
 # Create and modify the Audit Policy configuration file
 apiVersion: audit.k8s.io/v1 
@@ -787,14 +782,14 @@ rules:
       resources: ["pods/log", "pods/status"]
 
 # Create a directory to store the log files.
-mkdir /var/log/kubernetes/audit
+mkdir -p /var/log/kubernetes/audit
 
-# Add flags on the Kube API server manifest 
+# Add flags to the Kube API server manifest 
 - --audit-policy-file=/etc/kubernetes/audit-policy.yaml
 - --audit-log-path=/var/log/kubernetes/audit/audit.log
-- --audit-log-maxage=
-- --audit-log-maxbackup=
-- --audit-log-maxsize=
+- --audit-log-maxage=30
+- --audit-log-maxbackup=10
+- --audit-log-maxsize=100
 
 # Mount volumes of the Policy file and log path
 volumeMounts:
