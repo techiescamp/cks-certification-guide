@@ -11,11 +11,19 @@ To pass the exam, candidates need to achieve a score of at least 67%.
 The exam will be on Kubernetes version 1.35.
 Once the certificate is earned, the CKS certification remains valid for 2 years. The cost to take the exam is $445 USD.
 
-## CKS Exam Coupon (30% Off Exclusive Discount)
+## CKS Exam Coupon (40% Off Exclusive Discount)
 
-To save a flat 30% on CKS exam registration, use the following coupon code.
+To save a flat 40% on CKS exam registration, use the following coupon code.
+> [!IMPORTANT]
+> **Coupon:** Use code **40KUBE26CT** at [kube.promo/cka](https://kube.promo/cka)
 
-**Coupon:** Use code **DCUBE30** at [kube.promo/cks](https://kube.promo/cks)
+Use code **40KUBE26CT** to save up to 47% on the following bundles:
+
+- CKA + CKAD: [kube.promo/cka-ckad](https://kube.promo/cka-ckad)
+- CKA + CKS Bundle: [kube.promo/bundle](https://kube.promo/bundle)
+- CKA + CKAD + CKS Exam bundle: [kube.promo/k8s-bundle](https://kube.promo/k8s-bundle)
+- KCNA + KCSA + CKA + CKAD + CKS: [kube.promo/kubestronaut](https://kube.promo/kubestronaut)
+---
 
 ## Table of Contents
 
