@@ -6,15 +6,6 @@
 
 Every task names the host where the work must happen. Connect with `ssh <host>`, become root with `sudo -i` when you need it, and run `exit` to return to `base` when you finish. Before you edit any file on a node, copy it to `/root/` first, so you can roll back if something breaks.
 
-**Readiness check:** Use this table to judge how ready you are after a full timed run of all 25 tasks.
-
-| Tasks solved without the solution | Where you stand |
-|:---------------------------------:|-----------------|
-| 21 to 25 | Ready. Book the exam and use the simulator for final timing practice |
-| 16 to 20 | Close. Redo the tasks you missed and reread the matching study notes |
-| 10 to 15 | Not yet. Work through the study notes for your weakest domains, then retry |
-| Under 10 | Start with the study notes and come back to these tasks afterwards |
-
 ---
 
 ## Domain 1: Cluster Setup

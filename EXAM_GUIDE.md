@@ -63,8 +63,6 @@ These points shape how you work during the exam, so prepare for each of them.
 
 **Paste carefully.** In the terminal, copy with `Ctrl+Shift+C` and paste with `Ctrl+Shift+V`. YAML breaks when the indentation is wrong, so check it in `vim` after every paste. It also helps to know the short skeletons by heart: NetworkPolicy, securityContext, audit Policy, EncryptionConfiguration and projected volume.
 
-**The timer never stops.** The Pause Exam option does not stop the timer. The timer also keeps running during a disconnect, and lost time is not added back. So only pause when you really have to.
-
 ---
 
 ## 3. First Minutes of the Exam

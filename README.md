@@ -1436,25 +1436,12 @@ kubectl apply -f web.yaml
 
 <br>
 
-### Quick Stats
-
-| Item | Detail |
-|------|--------|
-| Time | 2 hours for 15 to 20 tasks |
-| Environment | A Linux remote desktop with a terminal, Firefox and VSCodium |
-| Task hosts | Each task names a host. Run `ssh <host>`, use `sudo -i` for root, then `exit` back to `base` |
-| Tools on the hosts | `kubectl` with the `k` alias and completion, `yq`, `curl`, `wget` and `man` |
-| Timer alerts | At 30, 15 and 5 minutes left. Pause Exam does not stop the timer |
-
 ### Keyboard Shortcuts
 
 | Action | Shortcut |
 |--------|----------|
-| `Ctrl+W` in the remote desktop | `Ctrl+Alt+W` (**NOT** `Ctrl+W`, which closes the browser tab) |
 | Copy (terminal) | `Ctrl+Shift+C` |
 | Paste (terminal) | `Ctrl+Shift+V` |
-| Find the mouse cursor | `Ctrl+Alt+K` |
-| Insert mode in `vim` | Press `i`, because the `INSERT` key is disabled |
 
 ### Time Management
 
