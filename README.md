@@ -1502,42 +1502,15 @@ A: The exam has 15 to 20 performance-based tasks. There is no multiple choice. Y
 
 A: The exam environment runs Kubernetes v1.37.
 
-**Q: Is the CKS exam open book? Which docs can I use?**
-
-A: Partly. You may use these docs during the exam:
-
-- `kubernetes.io/docs` and `kubernetes.io/blog`
-- The Falco docs at `falco.org/docs`
-- The bom CLI reference at `kubernetes-sigs.github.io/bom/cli-reference`
-- The etcd docs at `etcd.io/docs`
-- The ingress-nginx user guide at `kubernetes.github.io/ingress-nginx`
-- The Cilium docs at `docs.cilium.io`
-- The Istio docs at `istio.io/latest/docs`
-- The links in each task's Quick Reference box
-
-You may also read the docs installed on the hosts under `/usr/share` and the `man` pages.
-
-**Q: Which tools should I know for the CKS?**
-
-A: Practise Falco, Trivy, kube-bench, bom, Kubesec, KubeLinter, AppArmor, seccomp, Cilium, Istio, `etcdctl` and `crictl`. Several of them have no docs you can open in the exam, so learn their common flags well.
-
 **Q: Is the CKS harder than the CKA?**
 
 A: Most people find it more demanding. It assumes all the CKA skills, then adds many security tools and node-level work in the same 2 hours. So build speed on the CKA basics first, then practise each security tool until you do not need to look it up.
 
-**Q: Which domains carry the most weight?**
-
-A: Minimize Microservice Vulnerabilities, Supply Chain Security, and Monitoring, Logging and Runtime Security are 20% each. Together they make up 60% of the exam.
-
-**Q: Is there a free retake?**
+**Q: Is there a free retake for CKS?**
 
 A: Yes, one retake is included. You must take the exam within 12 months of purchase.
 
-**Q: How long is the CKS valid, and how do I renew it?**
-
-A: It is valid for 2 years. To renew it, you pass the CKS exam again before it expires. Under the CARE program, if you earn or recertify the CKS on or after June 18, 2026, your CKA expiration date is extended to match it. See the [CKA, CKAD and CKS FAQ](https://docs.linuxfoundation.org/tc-docs/certification/faq-cka-ckad-cks) for the details.
-
-**Q: Is there a practice exam simulator?**
+**Q: Is there a practice exam simulator for CKS?**
 
 A: Yes. Your registration includes 2 Killer.sh attempts, and each one gives you 36 hours of access from the moment you activate it. The simulator is not included with the CKS-SINGLE offer, so check what your purchase includes.
 
@@ -1562,15 +1535,6 @@ There are 25 exam-style tasks that cover all 6 CKS domains. Try each task on you
 2. Solve the task on your own cluster.
 3. Open the solution and compare it with your work.
 4. If you got it wrong, redo the task from scratch the next day.
-
-After a full timed run of all 25 tasks, use this table to judge how ready you are:
-
-| Tasks solved without the solution | Where you stand |
-|:---------------------------------:|-----------------|
-| 21 to 25 | Ready. Book the exam and use the simulator for final timing practice |
-| 16 to 20 | Close. Redo the tasks you missed and reread the matching study notes |
-| 10 to 15 | Not yet. Work through the study notes for your weakest domains, then retry |
-| Under 10 | Start with the study notes and come back to these tasks afterwards |
 
 > 📄 Full list: [PRACTICE_QUESTIONS.md](./PRACTICE_QUESTIONS.md)
 
