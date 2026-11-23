@@ -8,12 +8,9 @@
 
 This is a structured, hands-on learning path for the **Certified Kubernetes Security Specialist (CKS)** exam from the Linux Foundation and CNCF. It follows the official curriculum one domain at a time. For each topic, you get the concept, working YAML, the commands to verify it, and the mistakes you should be able to spot and fix.
 
----
 ## Hit the Star! :star:
 
 If you are planning to use this repo for reference, please hit the star. Thanks!
-
----
 
 <a id="exam-coupon"></a>
 
@@ -29,8 +26,6 @@ Use code **DCUBE30** to save up to 35% on the following bundles:
 - CKA + CKS Bundle: [kube.promo/bundle](https://kube.promo/bundle)
 - CKA + CKAD + CKS Exam bundle: [kube.promo/k8s-bundle](https://kube.promo/k8s-bundle)
 - KCNA + KCSA + CKA + CKAD + CKS: [kube.promo/kubestronaut](https://kube.promo/kubestronaut)
----
-
 
 ## About the Exam
 
@@ -123,8 +118,6 @@ Use code **DCUBE30** to save up to 35% on the following bundles:
 - Use Kubernetes audit logs to monitor access
 
 </details>
-
----
 
 ## The Learning Path
 
