@@ -14,13 +14,13 @@ If you are planning to use this repo for reference, please hit the star. Thanks!
 
 <a id="exam-coupon"></a>
 
-## CKS Exam Coupon (30% Off Exclusive Discount)
+## CKS Exam Coupon (50% Off Exclusive Discount)
 
-To save a flat 30% on CKS exam registration, use the following coupon code.
+To save a flat 50% on CKS exam registration, use the following coupon code.
 > [!IMPORTANT]
-> **Coupon:** Use code **DCUBE30** at [kube.promo/cks](https://kube.promo/cks)
+> **Coupon:** Use code **BFCM26CCCT** at [kube.promo/cks](https://kube.promo/cks)
 
-Use code **DCUBE30** to save up to 35% on the following bundles:
+Use code **BFCM26BUNCT** to save up to 60% on the following bundles:
 
 - CKA + CKAD: [kube.promo/cka-ckad](https://kube.promo/cka-ckad)
 - CKA + CKS Bundle: [kube.promo/bundle](https://kube.promo/bundle)
